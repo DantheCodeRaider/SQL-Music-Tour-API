@@ -1,37 +1,37 @@
-// DEPENDENCIES
-const { Sequelize, DataTypes,  Model } = require('sequelize')
-
-// MODEL
-class stageEvent extends Model{}
-
-stageEvent.init({
-    stage_event_id: { 
-        type: DataTypes.INTEGER, 
-        primaryKey: true, 
-        autoIncrement: true
+'use strict'
+const {
+  Model
+} = require('sequelize')
+module.exports = (sequelize, DataTypes) => {
+  class StageEvent extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  StageEvent.init({
+    stage_events_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
-    event_id: { 
-        type: DataTypes.INTEGER, 
-        foreignKey: true, 
-        references: {
-            model: 'events',
-            key: 'event_id',
-         } 
+    stage_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
     },
-    stage_id: { 
-        type: DataTypes.INTEGER, 
-        foreignKey: true, 
-        references: {
-            model: 'stages',
-            key: 'stage_id',
-         } 
-    },
-}, {
-        sequelize,                           
-        modelName: 'stageEvent',
-        tableName: 'stages_events',
-        timestamps: false  
-}) 
-
-// EXPORT
-module.exports = stageEvent
+    event_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
+    }
+  }, {
+    sequelize,
+    modelName: 'StageEvent',
+    tableName: 'stage_events',
+    timestamps: false,
+  })
+  return StageEvent
+}

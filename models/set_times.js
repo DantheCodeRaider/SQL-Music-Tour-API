@@ -1,49 +1,49 @@
-// DEPENDENCIES
-const { Sequelize, DataTypes,  Model } = require('sequelize')
-
-// MODEL
-class setTime extends Model{}
-
-setTime.init({
-    set_time_id: { 
-        type: DataTypes.INTEGER, 
-        primaryKey: true, 
-        autoIncrement: true
+'use strict'
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class SetTime extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  SetTime.init({
+    set_time_id: {
+      type: DataTypes.INTEGER, 
+      primaryKey: true,
+      autoIncrement: true
     },
-    name: { 
-        type: DataTypes.STRING, 
-        allowNull: true 
+    event_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
     },
-    start_time: { 
-        type: DataTypes.DATE, 
-        allowNull: true 
+    stage_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
     },
-    end_time: { 
-        type: DataTypes.DATE, 
-        allowNull: true 
+    band_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
     },
-    event_id: { 
-        type: DataTypes.INTEGER, 
-        foreignKey: true, 
-        references: {
-            model: 'events',
-            key: 'event_id',
-         } 
+    start_time: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
-    stage_id: { 
-        type: DataTypes.INTEGER, 
-        foreignKey: true, 
-        references: {
-            model: 'stages',
-            key: 'stage_id',
-         } 
+    end_time: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
-}, {
-        sequelize,                           
-        modelName: 'setTime',
-        tableName: 'set_times',
-        timestamps: false  
-}) 
-
-// EXPORT
-module.exports = setTime
+  }, {
+    sequelize,
+    modelName: 'SetTime',
+    tableName: 'set_times',
+    timestamps: false
+  })
+  return SetTime
+}

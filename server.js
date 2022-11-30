@@ -26,12 +26,18 @@ try {
     console.log(`Unable to connect to PG: ${err}`) 
 } */
 
+
+
 // ROOT
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to the Tour API'
     })
 })
+
+// CONTROLLERS 
+const bandsController = require('./controllers/bands_controller')
+app.use('/bands', bandsController)
 
 // LISTEN
 app.listen(process.env.PORT, () => {
