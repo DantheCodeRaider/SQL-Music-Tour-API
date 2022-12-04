@@ -53,3 +53,6 @@ module.exports = (sequelize, DataTypes) => {
   })
   return Band
 }
+
+//Command to mirgrate models to PostgreSQL
+//sequelize db:migrate

@@ -1,5 +1,6 @@
 'use strict'
 
+// Useful for adding dummy data
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('bands', [{
@@ -16,6 +17,7 @@ module.exports = {
   }
 }
 
+//Commands to generate initial models
 //# sequelize model:generate --name Band --attributes "band_id:integer, name:string, genre:text, available_start_time:date, end_time:date" --force true
 //# sequelize model:generate --name Stage --attributes "stage_id:integer, stage_name:string"
 //# sequelize model:generate --name Event --attributes "event_id:integer, name:string, event_date:date, start_time:date, end_time:date" --force true
